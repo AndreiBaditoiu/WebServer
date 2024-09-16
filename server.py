@@ -1,14 +1,12 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template,url_for
 
 app = Flask(__name__)
 print(__name__)
 
 
-
-@app.route("/")
-def my_home():
-    print(url_for('static', filename='images/favicon.ico'))
-    return render_template('index.html')
+@app.route('/<username>/<int:post_id>')
+def my_home(username=None, post_id=None):
+    return render_template('index.html', name=username, post_id=post_id)
 
 
 @app.route("/about")
